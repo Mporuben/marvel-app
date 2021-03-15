@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router';
+import router from './views/router';
 
 import { IonicVue } from '@ionic/vue';
 

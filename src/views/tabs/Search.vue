@@ -13,7 +13,8 @@
         
         <ion-item v-for="hero of heroes" :key="hero.id" lines="full">
 
-          <ion-label>{{hero.name}}</ion-label>
+          <ion-label @click="$router.push({name: ''})">{{hero.name}}</ion-label>
+
           <ion-buttons>
             <ion-button @click="$store.dispatch('heroes/toggleFavourite', hero.id)">
               <ion-icon :icon="$store.getters['heroes/isHeroFavorite'](hero.id) ? heartDislike : heart" />
