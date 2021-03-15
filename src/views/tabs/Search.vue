@@ -26,14 +26,13 @@
   </ion-page>
 </template>
 
-<script >
+<script>
 import { IonSearchbar, modalController, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue'
-import { defineComponent } from '@vue/runtime-core'
 
 import SearchModal from '@/plugins/search/SearchModal.vue'
 import HeroesList from '@/plugins/hero/HeroesList.vue'
 
-export default  defineComponent({
+export default {
   components: { IonSearchbar, HeroesList, IonInfiniteScroll, IonInfiniteScrollContent },
 
   computed: {
@@ -53,5 +52,5 @@ export default  defineComponent({
     }
   },
 
-})
+}
 </script>

@@ -57,8 +57,9 @@ export default {
 
       this.lastSearches.unshift(this.searchText)
       localStorage.setItem('lastSearches', JSON.stringify(this.lastSearches))
-      modalController.dismiss({search: this.searchText})
+
       this.$store.dispatch('search/findHeroesByName', this.searchText)
+      modalController.dismiss()
     },
 
     removeSearch(index) {

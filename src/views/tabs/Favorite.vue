@@ -24,7 +24,7 @@ import {IonBadge } from '@ionic/vue'
 
 import HeroesList from '@/plugins/hero/HeroesList.vue'
 
-export default  {
+export default {
   components: { IonBadge, HeroesList },
 
   computed: {
