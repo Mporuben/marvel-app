@@ -11,11 +11,12 @@
 
       <ion-list>
         
-        <ion-item lines="full">
-          <ion-label>test</ion-label>
+        <ion-item v-for="hero of heroes" :key="hero.id" lines="full">
+
+          <ion-label>{{hero.name}}</ion-label>
           <ion-buttons>
-            <ion-button>
-              <ion-icon :icon="heart" />
+            <ion-button @click="$store.dispatch('heroes/toggleFavourite', hero.id)">
+              <ion-icon :icon="$store.getters['heroes/isHeroFavorite'](hero.id) ? heartDislike : heart" />
             </ion-button>
           </ion-buttons>
 
@@ -28,15 +29,28 @@
   </ion-page>
 </template>
 
-<script lang="ts">
-import { IonPage, IonHeader, IonToolbar,  IonContent, IonSearchbar,  } from '@ionic/vue';
+<script >
+import { IonPage, IonHeader, IonToolbar,  IonContent, IonSearchbar } from '@ionic/vue';
+
+import { defineComponent } from '@vue/runtime-core';
 import { heartDislike, heart } from 'ionicons/icons';
 
-export default  {
+export default  defineComponent({
   components: { IonHeader, IonToolbar,  IonContent, IonPage,  IonSearchbar},
 
+  mounted() {
+    this.$store.dispatch('heroes/fetchHeroes')
+  },
+
+  computed: {
+    heroes() {
+      return this.$store.state.heroes.heroes
+    }
+  },
+
+
   setup() {
-    return { heartDislike, heart }
+    return { heartDislike, heart }  
   }
-}
+})
 </script>

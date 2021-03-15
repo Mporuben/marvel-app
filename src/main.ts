@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
@@ -23,6 +24,9 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import store from './store';
+
+
+Axios.defaults.baseURL = process.env.VUE_APP_API_URL
 
 
 const app = createApp(App)
