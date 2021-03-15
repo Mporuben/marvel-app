@@ -1,57 +1,57 @@
 <template>
   <ion-page>
-
     <ion-header>
       <ion-toolbar >
-        <ion-searchbar class="ion-margin-top"></ion-searchbar>
+        <ion-searchbar @click="openSearchModal" v-model="$store.state.search.searchText"  class="ion-margin-top"></ion-searchbar>
       </ion-toolbar>
     </ion-header>
-
     <ion-content :fullscreen="true">
-
-      <ion-list>
-        
-        <ion-item v-for="hero of heroes" :key="hero.id" lines="full">
-
-          <ion-label @click="$router.push({name: ''})">{{hero.name}}</ion-label>
-
-          <ion-buttons>
-            <ion-button @click="$store.dispatch('heroes/toggleFavourite', hero.id)">
-              <ion-icon :icon="$store.getters['heroes/isHeroFavorite'](hero.id) ? heartDislike : heart" />
-            </ion-button>
-          </ion-buttons>
-
+      <div v-if="heroes.length" >
+        <HeroesList :heroes="heroes"/>
+        <ion-item lines="none" v-if="$store.getters['search/areAllHeroesLoaded']">
+          <ion-label class="ion-text-center" color="primary">All heroes are loaded</ion-label>
         </ion-item>
-
-      </ion-list>
-      
+        <ion-infinite-scroll @ionInfinite="loadMoreHeroes($event)" >
+          <ion-infinite-scroll-content loading-spinner="bubbles" />
+        </ion-infinite-scroll>
+      </div>
+      <div v-else>
+        <ion-item lines="none">
+          <ion-label color="primary" class="ion-text-center">
+            {{($store.getters['search/isSearchEmpty']) ? 'No results' : 'Search for hero name ☝️'}}
+          </ion-label>
+        </ion-item>
+      </div>
     </ion-content>
-
   </ion-page>
 </template>
 
 <script >
-import { IonPage, IonHeader, IonToolbar,  IonContent, IonSearchbar } from '@ionic/vue';
-
+import { IonSearchbar, modalController, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue';
 import { defineComponent } from '@vue/runtime-core';
-import { heartDislike, heart } from 'ionicons/icons';
+
+import SearchModal from '@/plugins/search/SearchModal.vue'
+import HeroesList from '@/plugins/hero/HeroesList.vue'
 
 export default  defineComponent({
-  components: { IonHeader, IonToolbar,  IonContent, IonPage,  IonSearchbar},
-
-  mounted() {
-    this.$store.dispatch('heroes/fetchHeroes')
-  },
+  components: { IonSearchbar, HeroesList, IonInfiniteScroll, IonInfiniteScrollContent },
 
   computed: {
     heroes() {
-      return this.$store.state.heroes.heroes
+      return this.$store.state.search.heroes
     }
   },
 
+  methods: {
+    async openSearchModal() {
+      const modal = await modalController.create({component: SearchModal})
+      modal.present()
+    },
+    async loadMoreHeroes(ev) {
+      await this.$store.dispatch('search/fetchHeroes')
+      ev.target.complete()
+    }
+  },
 
-  setup() {
-    return { heartDislike, heart }  
-  }
 })
 </script>
