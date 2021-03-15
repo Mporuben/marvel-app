@@ -33,6 +33,7 @@ export default {
       dispatch('fetchHeroes')
     },
 
+    //fetches heroes by `nameStartsWith` from last loaded hero offset (by default 0)
     async fetchHeroes({commit, state}) {
       try {
         const offset = state.heroes.length

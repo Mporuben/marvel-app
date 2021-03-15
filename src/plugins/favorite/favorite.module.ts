@@ -33,11 +33,15 @@ export default {
 
 
   actions: {
+
+    //cleans up old data & iterates favoriteIdes to call fetch function
     async fetchFavoriteHeroes({state, commit, dispatch}) {
       await commit('cleanUpLoadedHeroes')
+      //not ideal solution it would be nice to fetch them in batch not on by one (I haven't find the way with provided API)
       state.favoriteIdes.forEach((id) => dispatch('fetchHeroById', id))
     },
 
+    //fetches hero data by id
     async fetchHeroById({commit}, id) {
       try {
         const resp = await Axios.get(`/v1/public/characters/${id}?apikey=${process.env.VUE_APP_MARVEL_API_KEY}`)
@@ -47,6 +51,7 @@ export default {
         console.error(err)
       }
     },
+
 
     async toggleFavourite({state, getters, dispatch}, id) {
       const actionName = getters['isHeroFavorite'](id) ? 'removeFavorite' : 'addFavorite'

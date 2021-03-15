@@ -46,6 +46,7 @@ export default {
       const modal = await modalController.create({component: SearchModal})
       modal.present()
     },
+
     async loadMoreHeroes(ev) {
       await this.$store.dispatch('search/fetchHeroes')
       ev.target.complete()

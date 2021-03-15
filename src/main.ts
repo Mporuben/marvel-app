@@ -20,7 +20,7 @@ const app = createApp(App)
   .use(router)
   .use(store)
 
-//Global components
+//Global components registration
 app
   //page
   .component('ion-page', IonPage)
