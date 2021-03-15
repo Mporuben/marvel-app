@@ -56,7 +56,7 @@ export default {
 
     async addFavorite({commit, dispatch}, id) {
       await commit('addFavorite', id)
-      await dispatch('fetchHeroById', id)
+      dispatch('fetchHeroById', id)
     },
 
     async removeFavorite({state, commit}, id) {

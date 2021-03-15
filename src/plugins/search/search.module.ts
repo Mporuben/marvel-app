@@ -30,13 +30,14 @@ export default {
   actions: {
     async findHeroesByName({commit, dispatch}, search) {
       await commit('searchText', search)
-      await dispatch('fetchHeroes')
+      dispatch('fetchHeroes')
     },
 
     async fetchHeroes({commit, state}) {
       try {
         const offset = state.heroes.length
-        const resp = await Axios.get(`/v1/public/characters?apikey=${process.env.VUE_APP_MARVEL_API_KEY}&nameStartsWith=${state.searchText}&offset=${offset}`)
+        const urlParams = `apikey=${process.env.VUE_APP_MARVEL_API_KEY}&nameStartsWith=${state.searchText}&offset=${offset}`
+        const resp = await Axios.get(`/v1/public/characters?${urlParams}`)
         await commit('heroesFinded', {
           heroes: resp.data.data.results,
           totalOffset: resp.data.data.total

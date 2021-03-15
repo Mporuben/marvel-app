@@ -3,18 +3,18 @@
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-back-button default-href="tabs/search" />
+          <ion-back-button default-href="/tabs/search" />
         </ion-buttons>
         <ion-title>{{detail?.name || 'Hero'}}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-      <img v-if="detail?.thumbnail?.path"  :src="`${detail.thumbnail.path}/landscape_incredible.jpg`">
+      <div id="avatar" v-if="detail?.thumbnail?.path" :style="{backgroundImage: `url('${detail.thumbnail.path}/standard_amazing.jpg')`}" />
       <div>
-        <p v-if="detail?.description">{{detail?.description}}</p>
+        <p v-if="detail?.description" class="ion-padding-horizontal">{{detail?.description}}</p>
         <ion-item v-else lines="none">
           <ion-label color="primary"  class="ion-text-center">
-            The hero has no description
+            Hero has no description
           </ion-label>
         </ion-item>
       </div>
@@ -26,7 +26,7 @@
 import { IonBackButton } from '@ionic/vue'
 import axios from 'axios'
 
-export default  {
+export default {
   components: { IonBackButton },
 
   data() { return {
@@ -49,3 +49,15 @@ export default  {
 
 }
 </script>
+
+
+<style lang="sass" scoped>
+#avatar
+  width: 180px
+  height: 180px
+  border-radius: 50%
+  background-position: center
+  background-size: cover
+  margin: 10px auto
+  border: solid var(--ion-color-primary) 3px
+</style>
