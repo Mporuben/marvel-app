@@ -17,6 +17,7 @@ export default {
   mutations: {
     searchText(state, text) {
       state.searchText = text
+      state.heroes = []
     },
 
     heroesFinded(state, {heroes, totalOffset}) {
