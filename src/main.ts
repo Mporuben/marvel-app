@@ -1,32 +1,45 @@
+import Axios from 'axios'
 import { createApp } from 'vue'
+import {
+  IonAvatar, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonicVue, IonItem,
+  IonLabel, IonList, IonPage, IonTitle, IonToolbar
+} from '@ionic/vue'
+
 import App from './App.vue'
-import router from './router';
+import router from './views/router'
+import store from './store'
 
-import { IonicVue } from '@ionic/vue';
+import '@/assets/styles/global.sass'
 
-/* Core CSS required for Ionic components to work properly */
-import '@ionic/vue/css/core.css';
 
-/* Basic CSS for apps built with Ionic */
-import '@ionic/vue/css/normalize.css';
-import '@ionic/vue/css/structure.css';
-import '@ionic/vue/css/typography.css';
+Axios.defaults.baseURL = process.env.VUE_APP_API_URL
 
-/* Optional CSS utils that can be commented out */
-import '@ionic/vue/css/padding.css';
-import '@ionic/vue/css/float-elements.css';
-import '@ionic/vue/css/text-alignment.css';
-import '@ionic/vue/css/text-transformation.css';
-import '@ionic/vue/css/flex-utils.css';
-import '@ionic/vue/css/display.css';
-
-/* Theme variables */
-import './theme/variables.css';
 
 const app = createApp(App)
-  .use(IonicVue)
-  .use(router);
-  
+  .use(IonicVue, {mode: 'ios'})
+  .use(router)
+  .use(store)
+
+//Global components
+app
+  //page
+  .component('ion-page', IonPage)
+  .component('ion-content', IonContent)
+  .component('ion-header', IonHeader)
+  .component('ion-toolbar', IonToolbar)
+  .component('ion-title', IonTitle)
+  //lists
+  .component('ion-list', IonList)
+  .component('ion-item', IonItem)
+  .component('ion-label', IonLabel)
+  .component('ion-avatar', IonAvatar)
+  //buttons
+  .component('ion-button', IonButton)
+  .component('ion-buttons', IonButtons)
+  //icons
+  .component('ion-icon', IonIcon)
+
+
 router.isReady().then(() => {
-  app.mount('#app');
-});
+  app.mount('#app')
+})
