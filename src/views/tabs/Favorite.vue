@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import {IonBadge } from '@ionic/vue';
+import {IonBadge } from '@ionic/vue'
 
 import HeroesList from '@/plugins/hero/HeroesList.vue'
 

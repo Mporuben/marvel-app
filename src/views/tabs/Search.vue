@@ -27,8 +27,8 @@
 </template>
 
 <script >
-import { IonSearchbar, modalController, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue';
-import { defineComponent } from '@vue/runtime-core';
+import { IonSearchbar, modalController, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/vue'
+import { defineComponent } from '@vue/runtime-core'
 
 import SearchModal from '@/plugins/search/SearchModal.vue'
 import HeroesList from '@/plugins/hero/HeroesList.vue'

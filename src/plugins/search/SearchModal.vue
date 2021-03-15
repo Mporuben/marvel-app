@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import { modalController, IonSearchbar, alertController } from '@ionic/vue';
-import {search as searchIcon, close as closeIcon} from 'ionicons/icons';
+import { modalController, IonSearchbar, alertController } from '@ionic/vue'
+import {search as searchIcon, close as closeIcon} from 'ionicons/icons'
 
 export default {
   components: { IonSearchbar  },

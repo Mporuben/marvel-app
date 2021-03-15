@@ -19,8 +19,7 @@
 
 
 <script>
-import { heartDislike, heart, chevronForward } from 'ionicons/icons';
-
+import { heartDislike, heart, chevronForward } from 'ionicons/icons'
 
 export default {
   props:{

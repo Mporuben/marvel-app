@@ -1,8 +1,10 @@
-import { createStore } from "vuex";
-import heroes from '@/plugins/heroes/heroes.module'
+import { createStore } from "vuex"
+import favorite from '@/plugins/favorite/favorite.module'
+import search from "./plugins/search/search.module"
 
 export default createStore({
-    modules: {
-        heroes
-    }
+  modules: {
+    favorite,
+    search
+  }
 })

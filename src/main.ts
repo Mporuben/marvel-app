@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import Axios from 'axios'
 import { createApp } from 'vue'
 import {
   IonAvatar, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonicVue, IonItem,
@@ -41,5 +41,5 @@ app
 
 
 router.isReady().then(() => {
-  app.mount('#app');
+  app.mount('#app')
 })
